@@ -21,9 +21,6 @@ class UtilityCostCalculator extends JFrame {
         setTitle("Калькулятор коммунальных платежей");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ImageIcon icon = new ImageIcon("icon.png");
-        setIconImage(icon.getImage());
-
         JPanel panel = createMainPanel();
         add(panel);
 
