@@ -42,3 +42,7 @@ build/
 /utility_settings.json
 /.idea/vcs.xml
 /.idea/
+/ucc.xml
+/icon.ico
+/icon.png
+/out/artifacts/UtilityCostCalculator_jar/UtilityCostCalculator.jar
