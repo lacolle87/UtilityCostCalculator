@@ -24,11 +24,39 @@ class UtilityCostCalculator extends JFrame {
         JPanel panel = createMainPanel();
         add(panel);
 
+        createMenuBar();
+
         loadSettings();
 
+
         pack();
+        setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("Файл");
+        JMenuItem aboutMenuItem = new JMenuItem("О программе");
+        aboutMenuItem.addActionListener(this::showAboutDialog);
+        JMenuItem exitMenuItem = new JMenuItem("Выход");
+        exitMenuItem.addActionListener(e -> System.exit(0));
+
+        fileMenu.add(aboutMenuItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitMenuItem);
+
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
+    }
+
+    private void showAboutDialog(ActionEvent e) {
+        JOptionPane.showMessageDialog(this,
+                "Калькулятор коммунальных платежей\nВерсия 0.1.2\nhttps://github.com/lacolle87",
+                "О программе",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     private JPanel createMainPanel() {
@@ -45,9 +73,9 @@ class UtilityCostCalculator extends JFrame {
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        addLabelAndTextField(inputPanel, gbc, "Изначальные показатели воды:", initialWaterTextField = new JTextField(10));
+        addLabelAndTextField(inputPanel, gbc, "Предыдущие показатели воды:", initialWaterTextField = new JTextField(10));
         addLabelAndTextField(inputPanel, gbc, "Текущие показатели воды:", currentWaterTextField = new JTextField(10));
-        addLabelAndTextField(inputPanel, gbc, "Изначальные показатели электричества:", initialElectricityTextField = new JTextField(10));
+        addLabelAndTextField(inputPanel, gbc, "Предыдущие показатели электричества:", initialElectricityTextField = new JTextField(10));
         addLabelAndTextField(inputPanel, gbc, "Текущие показатели электричества:", currentElectricityTextField = new JTextField(10));
         addLabelAndTextField(inputPanel, gbc, "Тариф за воду (руб/м³):", waterRateTextField = new JTextField(10));
         addLabelAndTextField(inputPanel, gbc, "Тариф за водоотведение (руб/м³):", sewageRateTextField = new JTextField(10));
@@ -172,4 +200,3 @@ class UtilityCostCalculator extends JFrame {
         SwingUtilities.invokeLater(UtilityCostCalculator::new);
     }
 }
-
